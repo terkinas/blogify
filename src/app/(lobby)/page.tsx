@@ -1,16 +1,12 @@
-import {
-    LoginButton,
-    LogoutButton,
-    ProfileButton,
-    RegisterButton,
-    } from "@/components/auth/buttons.component";
-import { User } from "@/components/auth/user.component";
 
-import { getServerSession } from "next-auth";
 import { ModeToggle } from "@/components/mode-toggle";
-
+import ClientConsole from "@/components/client-console";
+import supabase from "@/lib/supabase";
 
   export default async function Home() {
+
+    const { data: user } = await supabase.auth.getUser();
+
     return (
       <main
         style={{
@@ -20,7 +16,8 @@ import { ModeToggle } from "@/components/mode-toggle";
           height: "70vh",
         }}
       >
- 
+     <ClientConsole data={user} />
+     
         <ModeToggle />
       </main>
     );
