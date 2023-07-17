@@ -54,9 +54,9 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
             toast.error(err.message)
           })
     } else if (pathname == '/login') {
-        await supabase.auth.signInWithPassword({
+        await supabase.auth.signInWithOtp({
             email: data.email.toLowerCase(),
-            password: data.password,
+            // password: data.password,
         }).then((res) => {
           toast.success('Authenticated successfully')
         }).catch((err) => {
