@@ -41,9 +41,8 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
     setIsLoading(true)
 
     if(pathname == '/register') {
-        await supabase.auth.signUp({
+        await supabase.auth.signInWithOtp({
             email: data.email.toLowerCase(),
-            password: data.password,
             options: {
               emailRedirectTo: `${location.origin}/auth/callback`,
             },
@@ -56,9 +55,12 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
     } else if (pathname == '/login') {
         await supabase.auth.signInWithOtp({
             email: data.email.toLowerCase(),
+            options: {
+              emailRedirectTo: `${location.origin}/auth/callback`,
+            },
             // password: data.password,
         }).then((res) => {
-          toast.success('Authenticated successfully')
+          toast.success('Authentication link sent to email')
         }).catch((err) => {
           toast.error(err.message)
         })
@@ -66,8 +68,6 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
     }
 
     setIsLoading(false)
-
-    return toast.success(pathname)
   }
 
   return (
@@ -91,27 +91,6 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
                 {errors.email.message}
-              </p>
-            )}
-          </div>
-
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Password
-            </Label>
-            <Input
-              id="password"
-              placeholder="secret"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="password"
-              autoCorrect="off"
-              disabled={isLoading || isGitHubLoading}
-              {...register("password")}
-            />
-            {errors?.password && (
-              <p className="px-1 text-xs text-red-600">
-                {errors.password.message}
               </p>
             )}
           </div>

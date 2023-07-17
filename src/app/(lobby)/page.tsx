@@ -2,8 +2,15 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import ClientConsole from "@/components/client-console";
 import supabase from "@/lib/supabase";
+import { getCurrentUser } from "@/lib/session";
 
   export default async function Home() {
+
+    let response = await supabase
+    .from('profiles')
+    .select()
+    
+    const nSession = getCurrentUser();
 
     const { data: user } = await supabase.auth.getUser();
 
@@ -16,7 +23,7 @@ import supabase from "@/lib/supabase";
           height: "70vh",
         }}
       >
-     <ClientConsole data={user} />
+     <ClientConsole data={nSession} />
      
         <ModeToggle />
       </main>
