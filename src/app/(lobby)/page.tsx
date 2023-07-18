@@ -11,8 +11,10 @@ import { getCurrentUser } from "@/lib/session";
     .select()
     
     const nSession = getCurrentUser();
+    // const { data: session } = await supabase.auth.getSession();
 
-    const { data: user } = await supabase.auth.getUser();
+    // const { data: user } = await supabase.auth.getUser();]
+    const { count } = await supabase.from('posts').select('*', { count: 'exact' })
 
     return (
       <main
@@ -23,7 +25,7 @@ import { getCurrentUser } from "@/lib/session";
           height: "70vh",
         }}
       >
-     <ClientConsole data={nSession} />
+     <ClientConsole data={count} />
      
         <ModeToggle />
       </main>

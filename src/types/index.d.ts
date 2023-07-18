@@ -2,6 +2,7 @@ import { User } from "@prisma/client"
 import type { Icon } from "lucide-react"
 
 import { Icons } from "@/components/icons"
+import { title } from "process"
 
 export type NavItem = {
     title: string
@@ -58,3 +59,10 @@ export type SidebarNavItem = {
       items: NavLink[]
     }
 )
+
+interface IPost {
+  id: string
+  title: string,
+  published?: boolean,
+  createdAt?: string,
+}

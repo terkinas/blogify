@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 import { dashboardConfig } from "@/config/dashboard"
 import { getCurrentUser } from "@/lib/session"
@@ -6,19 +6,35 @@ import { MainNav } from "@/components/layouts/main-nav"
 import { DashboardNav } from "@/components/layouts/dashboard-nav"
 import { SiteFooter } from "@/components/layouts/site-footer"
 import { UserAccountNav } from "@/components/layouts/user-account-nav"
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs"
+import { cookies } from 'next/headers'
+
 
 interface DashboardLayoutProps {
-  children?: React.ReactNode
+  children?: React.ReactNode,
 }
 
-export default async function DashboardLayout({
+export default function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getCurrentUser()
+
+  const user = getCurrentUser()
 
   if (!user) {
     return notFound()
   }
+
+  if (!user) {
+    redirect('/login')
+}
+
+const signOut = async () => {
+    'use server'
+    const supabase = createServerActionClient({ cookies })
+    await supabase.auth.signOut()
+    redirect('/login')
+  }
+
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
@@ -27,7 +43,7 @@ export default async function DashboardLayout({
           <MainNav items={dashboardConfig.mainNav} />
           <UserAccountNav
             user={{
-              name: 'james',
+              name: 'heee',
               image: null,
               email: 'test@gmail.com',
             }}

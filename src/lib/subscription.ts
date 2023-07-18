@@ -1,25 +1,19 @@
-import { UserSubscriptionPlan } from "types"
+import { UserSubscriptionPlan } from "@/types"
 import { freePlan, proPlan } from "@/config/subscriptions"
-import { db } from "@/lib/db"
+import supabase from "./supabase"
 
 export async function getUserSubscriptionPlan(
   userId: string
 ): Promise<UserSubscriptionPlan> {
-  const user = await db.user.findFirst({
-    where: {
-      id: userId,
-    },
-    select: {
-      stripeSubscriptionId: true,
-      stripeCurrentPeriodEnd: true,
-      stripeCustomerId: true,
-      stripePriceId: true,
-    },
-  })
+  const { data: users } = await supabase.from("users").select(
+    'stripeSubscriptionId, stripeCurrentPeriodEnd, stripeCustomerId, stripePriceId')
+    .eq("id", userId)
 
-  if (!user) {
+  if (!users || users.length === 0) {
     throw new Error("User not found")
   }
+
+  const user = users[0]; // Get the first user from the array
 
   // Check if user is on a pro plan.
   const isPro =

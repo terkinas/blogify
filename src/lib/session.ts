@@ -2,7 +2,9 @@ import supabase from "./supabase"
 
 export async function getCurrentUser() {
     
-    const { data: user, error } = await supabase.auth.getSession()
+  const {
+    data: { user },
+    } = await supabase.auth.getUser()
 
   return user
 }
