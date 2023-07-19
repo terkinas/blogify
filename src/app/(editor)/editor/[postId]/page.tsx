@@ -17,7 +17,7 @@ async function getPostForUser(postId: string, userId: string): Promise<PostData 
     .from('posts')
     .select()
     .eq('id', postId)
-    .eq('authorId', userId)
+    .eq('user_id', userId)
     .single();
 
   if (response.error || !response.data) {

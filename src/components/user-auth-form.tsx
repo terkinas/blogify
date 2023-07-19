@@ -45,6 +45,12 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
             email: data.email.toLowerCase(),
             options: {
               emailRedirectTo: `${location.origin}/auth/callback`,
+              data: {
+                stripeSubscriptionId: '',
+                stripeCurrentPeriodEnd: '',
+                stripeCustomerId: '',
+                stripePriceId: '',
+              },
             },
           }).then((res) => {
             toast.success('Check your email for the confirmation link')
@@ -58,6 +64,7 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
             options: {
               emailRedirectTo: `${location.origin}/auth/callback`,
             },
+            
             // password: data.password,
         }).then((res) => {
           toast.success('Authentication link sent to email')

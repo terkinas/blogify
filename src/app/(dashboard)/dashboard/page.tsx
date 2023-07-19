@@ -27,7 +27,7 @@ export default async function DashboardPage() {
     redirect("/login")
   }
 
-  const {data:posts} = await supabase.from('posts').select()
+  const {data:posts} = await supabase.from('posts').select().eq('user_id', user.id)
 
   
 

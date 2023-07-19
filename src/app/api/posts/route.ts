@@ -20,7 +20,7 @@ export async function GET() {
       }
 
     const posts = await supabase.from('posts')
-    .select('id, title, published, createdAt').eq('authorId', user.id)
+    .select('id, title, published, createdAt').eq('user_id', user.id)
 
     return new Response(JSON.stringify(posts))
   } catch (error) {
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
     const body = postCreateSchema.parse(json)
 
     const post = await supabase.from('posts').insert([
-      { title: body.title, content: body.content, authorId: user.id },
+      { title: body.title, content: body.content, user_id: user.id },
     ])
 
 

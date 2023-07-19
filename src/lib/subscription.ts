@@ -5,9 +5,11 @@ import supabase from "./supabase"
 export async function getUserSubscriptionPlan(
   userId: string
 ): Promise<UserSubscriptionPlan> {
-  const { data: users } = await supabase.from("users").select(
+  const { data: users } = await supabase.from("profiles").select(
     'stripeSubscriptionId, stripeCurrentPeriodEnd, stripeCustomerId, stripePriceId')
     .eq("id", userId)
+
+    console.log('subscriptions:', users)
 
   if (!users || users.length === 0) {
     throw new Error("User not found")

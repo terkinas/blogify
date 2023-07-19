@@ -42,12 +42,10 @@ export function PostCreateButton({
     }
 
     const post = await response.json()
-    console.log(post)
 
     // This forces a cache invalidation.
-    // router.refresh()
-
-    // router.push(`/editor/${post.id}`)
+    router.refresh()
+    router.push(`/editor/${post.id}`)
   }
 
   return (
