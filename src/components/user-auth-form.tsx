@@ -139,3 +139,4 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
     </div>
   )
 }
+

@@ -34,6 +34,8 @@ interface EditorPageProps {
   params: { postId: string };
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function EditorPage({ params }: EditorPageProps) {
   const user = await getCurrentUser();
 
@@ -60,3 +62,4 @@ export default async function EditorPage({ params }: EditorPageProps) {
     />
   );
 }
+

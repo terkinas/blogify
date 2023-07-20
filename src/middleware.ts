@@ -15,3 +15,5 @@ export async function middleware(req: NextRequest) {
 
   return res
 }
+
+export const dynamic = 'force-dynamic';

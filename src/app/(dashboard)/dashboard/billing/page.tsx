@@ -75,3 +75,5 @@ export default async function BillingPage() {
     </DashboardShell>
   )
 }
+
+export const dynamic = 'force-dynamic';
