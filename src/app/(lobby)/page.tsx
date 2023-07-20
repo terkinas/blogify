@@ -1,11 +1,11 @@
 
 import { ModeToggle } from "@/components/mode-toggle";
 import ClientConsole from "@/components/client-console";
-import supabase from "@/lib/supabase";
+import supabaseServerComponentClient from "@/lib/supabase";
 import { getCurrentUser } from "@/lib/session";
 
   export default async function Home() {
-
+    const supabase = await supabaseServerComponentClient();
     let response = await supabase
     .from('profiles')
     .select()

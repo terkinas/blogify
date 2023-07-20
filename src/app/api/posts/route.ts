@@ -1,6 +1,6 @@
 import * as z from "zod"
 
-import supabase from "@/lib/supabase"
+import supabaseServerComponentClient from "@/lib/supabase"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
 
@@ -11,6 +11,7 @@ const postCreateSchema = z.object({
 
 export async function GET() {
   try {
+    const supabase = await supabaseServerComponentClient();
     const {
       data: { user },
   } = await supabase.auth.getUser()
@@ -30,6 +31,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
     try {
+      const supabase = await supabaseServerComponentClient();
       const {
         data: { user },
     } = await supabase.auth.getUser()

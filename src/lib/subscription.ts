@@ -1,10 +1,11 @@
 import { UserSubscriptionPlan } from "@/types"
 import { freePlan, proPlan } from "@/config/subscriptions"
-import supabase from "./supabase"
+import supabaseServerComponentClient from "./supabase"
 
 export async function getUserSubscriptionPlan(
   userId: string
 ): Promise<UserSubscriptionPlan> {
+  const supabase = await supabaseServerComponentClient();
   const { data: users } = await supabase.from("profiles").select(
     'stripeSubscriptionId, stripeCurrentPeriodEnd, stripeCustomerId, stripePriceId')
     .eq("id", userId)

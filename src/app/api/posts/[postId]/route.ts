@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth"
 import * as z from "zod"
 
-import supabase from "@/lib/supabase"
+import supabaseServerComponentClient from "@/lib/supabase"
 import { postPatchSchema } from "@/lib/validations/post"
 import { getCurrentUser } from "@/lib/session"
 
@@ -16,6 +16,7 @@ export async function DELETE(
   context: z.infer<typeof routeContextSchema>
 ) {
   try {
+    const supabase = await supabaseServerComponentClient();
     // Validate the route params.
     const { params } = routeContextSchema.parse(context)
 
@@ -42,6 +43,7 @@ export async function PATCH(
   context: z.infer<typeof routeContextSchema>
 ) {
   try {
+    const supabase = await supabaseServerComponentClient();
     // Validate route params.
     const { params } = routeContextSchema.parse(context)
 
@@ -69,6 +71,7 @@ export async function PATCH(
 }
 
 async function verifyCurrentUserHasAccessToPost(postId: string) {
+  const supabase = await supabaseServerComponentClient();
   const user = await getCurrentUser()
   const {count} = await supabase.from("posts").select("*", { count: "exact" }).match({ id: postId, user_id: user?.id })
 

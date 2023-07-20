@@ -1,5 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import supabase from "@/lib/supabase";
+import supabaseServerComponentClient from "@/lib/supabase";
 import { getCurrentUser } from "@/lib/session";
 import { Editor } from "@/components/editor";
 import { IPost } from "@/types";
@@ -13,6 +13,7 @@ interface PostData {
 }
 
 async function getPostForUser(postId: string, userId: string): Promise<PostData | null> {
+  const supabase = await supabaseServerComponentClient();
   const response = await supabase
     .from('posts')
     .select()

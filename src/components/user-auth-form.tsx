@@ -52,10 +52,10 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
                 stripePriceId: '',
               },
             },
-          }).then((res) => {
+          }).then((res: any) => {
             toast.success('Check your email for the confirmation link')
             if(onRegisterSuccess) onRegisterSuccess()
-          }).catch((err) => {
+          }).catch((err: any) => {
             toast.error(err.message)
           })
     } else if (pathname == '/login') {
@@ -66,9 +66,9 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
             },
             
             // password: data.password,
-        }).then((res) => {
+        }).then((res: any) => {
           toast.success('Authentication link sent to email')
-        }).catch((err) => {
+        }).catch((err: any) => {
           toast.error(err.message)
         })
 

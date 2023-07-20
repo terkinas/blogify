@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 
-import supabase from "@/lib/supabase"
+import supabaseServerComponentClient from "@/lib/supabase"
 import { getCurrentUser } from "@/lib/session"
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
@@ -21,6 +21,7 @@ interface PostsHeaderProps {
 }
 
 export default async function DashboardPage() {
+  const supabase = await supabaseServerComponentClient();
   const user = await getCurrentUser()
 
   if (!user) {
