@@ -44,7 +44,7 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
         await supabase.auth.signInWithOtp({
             email: data.email.toLowerCase(),
             options: {
-              emailRedirectTo: `${location.origin}/auth/callback`,
+              emailRedirectTo: `https://blogify-eight-tau.vercel.app/auth/callback`,
               data: {
                 stripeSubscriptionId: '',
                 stripeCurrentPeriodEnd: '',
@@ -62,7 +62,8 @@ export function UserAuthForm({ className, onRegisterSuccess, ...props }: UserAut
         await supabase.auth.signInWithOtp({
             email: data.email.toLowerCase(),
             options: {
-              emailRedirectTo: `${location.origin}/auth/callback`,
+              // emailRedirectTo: `${location.origin}/auth/callback`,
+              emailRedirectTo: `https://blogify-eight-tau.vercel.app/auth/callback`,
             },
             
             // password: data.password,
