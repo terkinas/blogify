@@ -24,8 +24,6 @@ export const metadata = {
 export default async function BillingPage() {
   const user = await getCurrentUser()
 
-  console.log('bpage:', user)
-
   if (!user) {
     redirect("/login")
   }

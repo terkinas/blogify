@@ -3,11 +3,8 @@ import { LobbyConfig } from "@/types";
 export const lobbyConfig: LobbyConfig = {
     mainNav: [
         { 
-            title: "Home", 
-            href: "/" },
-        { 
             title: "Features", 
-            href: "/#features" },
+            href: "/" },
         { 
             title: "Pricing", 
             href: "/pricing" },

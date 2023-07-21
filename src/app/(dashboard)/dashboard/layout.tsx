@@ -43,9 +43,9 @@ const signOut = async () => {
           <MainNav items={dashboardConfig.mainNav} />
           <UserAccountNav
             user={{
-              name: 'heee',
+              name: 'User',
               image: null,
-              email: 'test@gmail.com',
+              email: '',
             }}
           />
         </div>

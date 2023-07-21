@@ -1,5 +1,6 @@
 import supabaseServerComponentClient from "./supabase"
 
+
 export async function getCurrentUser() {
   'use server'
   const supabase = await supabaseServerComponentClient();

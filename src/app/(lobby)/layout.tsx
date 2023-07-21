@@ -20,7 +20,7 @@ export default function LobbyLayout({
           <MainNav items={lobbyConfig.mainNav} />
           <nav>
             <Link
-              href="/login"
+              href="/dashboard"
               className={cn(
                 buttonVariants({ variant: "secondary", size: "sm" }),
                 "px-4"
