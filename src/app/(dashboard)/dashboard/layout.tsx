@@ -14,11 +14,11 @@ interface DashboardLayoutProps {
   children?: React.ReactNode,
 }
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
 
-  const user = getCurrentUser()
+  const user = await getCurrentUser()
 
   if (!user) {
     return notFound()

@@ -5,9 +5,9 @@ export const siteConfig: SiteConfig = {
   description:
     "This blog application utilizes Next.js 13's new router, server components, and other exciting features.",
   url: "https://blogify.terkinas.com",
-  ogImage: "https://tx.shadcn.com/og.jpg",
+  ogImage: "",
   links: {
-    twitter: "https://twitter.com/shadcn",
+    twitter: "https://twitter.com/terkinis",
     github: "https://github.com/terkinas/blogify",
   },
 }

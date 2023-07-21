@@ -40,19 +40,19 @@ export async function POST(req: Request) {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    // const subscriptionPlan = await getUserSubscriptionPlan(user.id)
+    const subscriptionPlan = await getUserSubscriptionPlan(user.id)
 
     // // If user is on a free plan.
     // // Check if user has reached limit of 3 posts.
-    // if (!subscriptionPlan?.isPro) {
+    if (!subscriptionPlan?.isPro) {
 
     const { count } = await supabase.from('posts').select('*', { count: 'exact' })
 
      // If user has reached limit of 3 posts, throw error.
-      // if (count && count >= 3) {
-      //   throw new RequiresProPlanError()
-      // }
-    // }
+      if (count && count >= 3) {
+        throw new RequiresProPlanError()
+      }
+    }
 
     const json = await req.json()
     const body = postCreateSchema.parse(json)
