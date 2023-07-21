@@ -11,10 +11,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { BillingForm } from "@/components/billing-form"
+// import { BillingForm } from "@/components/billing-form"
 import { DashboardHeader } from "@/components/header"
 import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
+import { Button } from "@/components/ui/button"
 
 export const metadata = {
   title: "Billing",
@@ -28,16 +29,16 @@ export default async function BillingPage() {
     redirect("/login")
   }
 
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id)
+  // const subscriptionPlan = await getUserSubscriptionPlan(user.id)
 
-  // If user has a pro plan, check cancel status on Stripe.
-  let isCanceled = false
-  if (subscriptionPlan.isPro && subscriptionPlan.stripeSubscriptionId) {
-    const stripePlan = await stripe.subscriptions.retrieve(
-      subscriptionPlan.stripeSubscriptionId
-    )
-    isCanceled = stripePlan.cancel_at_period_end
-  }
+  // // If user has a pro plan, check cancel status on Stripe.
+  // let isCanceled = false
+  // if (subscriptionPlan.isPro && subscriptionPlan.stripeSubscriptionId) {
+  //   const stripePlan = await stripe.subscriptions.retrieve(
+  //     subscriptionPlan.stripeSubscriptionId
+  //   )
+  //   isCanceled = stripePlan.cancel_at_period_end
+  // }
 
   return (
     <DashboardShell>
@@ -63,12 +64,13 @@ export default async function BillingPage() {
             .
           </AlertDescription>
         </Alert>
-        <BillingForm
+        {/* <BillingForm
           subscriptionPlan={{
             ...subscriptionPlan,
             isCanceled,
           }}
-        />
+        /> */}
+        <Button variant='ghost' disabled>Upgrade to PRO</Button>
       </div>
     </DashboardShell>
   )
