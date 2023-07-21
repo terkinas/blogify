@@ -21,7 +21,7 @@ export function PostItem({ post }: PostItemProps) {
         </Link>
         <div>
           <p className="text-sm text-muted-foreground">
-            {JSON.stringify(post.createdAt)}
+          {formatDate(post.createdAt as string)}
           </p>
         </div>
       </div>
