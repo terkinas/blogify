@@ -45,7 +45,7 @@ const signOut = async () => {
             user={{
               name: 'User',
               image: null,
-              email: '',
+              email: 'anonymous@blogify.com',
             }}
           />
         </div>
