@@ -1,13 +1,13 @@
-// import { User } from "@prisma/client"
+import { User } from "@prisma/client"
 import type { Icon } from "lucide-react"
 
-export type User = {
-    id?: string
-    email?: string
-    name?: string
-    stripeSubscriptionId?: string
+// export type User = {
+//     id?: string
+//     email?: string
+//     name?: string
+//     stripeSubscriptionId?: string
     
-}
+// }
 
 import { Icons } from "@/components/icons"
 import { title } from "process"
